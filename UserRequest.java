@@ -1,11 +1,17 @@
-package com.gotprint.usernote.service;
+package com.gotprint.usernote.jaxb;
 
-import com.gotprint.usernote.model.Note;
-import com.gotprint.usernote.model.User;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="Note")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class UserRequest {
-
+	
+	@XmlElement(name="user")
 	private User user;
+	@XmlElement(name="note")
 	private Note note;
 	/**
 	 * @return the user
@@ -31,7 +37,5 @@ public class UserRequest {
 	public void setNote(Note note) {
 		this.note = note;
 	}
-	
-	
 	
 }

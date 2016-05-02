@@ -1,15 +1,15 @@
-package com.gotprint.usernote.service;
+package com.gotprint.usernote.jaxb;
 
-import java.util.List;
-
-import com.gotprint.usernote.model.Note;
-import com.gotprint.usernote.model.User;
+import javax.xml.bind.annotation.XmlElement;
 
 public class UserResponse {
 
+
+
+	@XmlElement(name="user")
 	private User user;
+	@XmlElement(name="note", type=Note.class)
 	private Note note;
-	private List<Note> noteList;
 	/**
 	 * @return the user
 	 */
@@ -34,17 +34,5 @@ public class UserResponse {
 	public void setNote(Note note) {
 		this.note = note;
 	}
-	/**
-	 * @return the noteList
-	 */
-	public List<Note> getNoteList() {
-		return noteList;
-	}
-	/**
-	 * @param noteList the noteList to set
-	 */
-	public void setNoteList(List<Note> noteList) {
-		this.noteList = noteList;
-	}
-	
+
 }
