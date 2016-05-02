@@ -1,41 +1,34 @@
-package com.gotprint.usernote.model;
+package com.gotprint.usernote.jaxb;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 
-import org.hibernate.validator.constraints.Length;
-
-@Entity
-@Table(name="USER")
+@XmlRootElement(name="user")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
 
-	@Id
-	@Column(name = "USER_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@XmlElement(name="id")
 	private int id;
 
-	@Column(name = "EMAIL", nullable = false, unique = true)
+	@XmlElement(name="email")
 	private String email;
 
-	@Length(min = 8)
-	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	
-	@Column(name = "CREATE_TIME", nullable = false)
+	@XmlSchemaType(name = "dateTime")
+	@XmlElement(name="createTime")
 	private String createTime;
 
-	@Column(name = "LAST_UPDATE_TIME", nullable = false)
+	@XmlSchemaType(name = "dateTime")
+	@XmlElement(name="lastUpdateTime")
 	private String lastUpdateTime;
 	
-	@OneToMany(mappedBy = "USER", cascade = CascadeType.ALL)
+	@XmlElement(name="note", type=Note.class)
 	private List<Note> note;
 	
 	public int getId() {
@@ -134,5 +127,6 @@ public class User {
 			return false;
 		return true;
 	}
+
 
 }
