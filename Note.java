@@ -1,41 +1,33 @@
-package com.gotprint.usernote.model;
+package com.gotprint.usernote.jaxb;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 
-import org.hibernate.validator.constraints.Length;
-
-@Entity
-@Table(name="NOTE")
+@XmlRootElement(name="Note")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Note {
 	
-	@Id
-	@Column(name = "NOTE_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@XmlElement(name="id")
 	private int id;
 	
-	@Column(name = "TITLE", nullable = false)
-	@Length(max = 50)
+	@XmlElement(name="title")
 	private String title;
 
-	@Length(max = 1000)
-	@Column(name = "NOTE_BOX", nullable = false)
+	@XmlElement(name="noteBox")
 	private String noteBox;
 	
-	@Column(name = "CREATE_TIME", nullable = false)
+	@XmlSchemaType(name = "dateTime")
+	@XmlElement(name="createTime")
 	private String createTime;
-
-	@Column(name = "LAST_UPDATE_TIME", nullable = false)
+	
+	@XmlSchemaType(name = "dateTime")
+	@XmlElement(name="lastUpdateTime")
 	private String lastUpdateTime;
 	
-	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@XmlElement(name="user")
 	private User user;
 
 	/**
@@ -120,30 +112,6 @@ public class Note {
 	 */
 	public void setUser(User user) {
 		this.user = user;
-	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Note other = (Note) obj;
-		if (id != other.id)
-			return false;
-		return true;
 	}
 
 }
