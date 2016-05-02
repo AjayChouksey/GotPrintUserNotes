@@ -42,4 +42,5 @@ public class UserServiceResource {
 
 		return (UserResponse) aResponse.getValue();
 	}
+	
 }
