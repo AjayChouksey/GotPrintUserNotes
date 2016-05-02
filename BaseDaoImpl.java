@@ -25,6 +25,7 @@ public class BaseDaoImpl implements BaseDao{
 		return (T) getSession().save(entity);
 	}
 
+
 	@SuppressWarnings("unchecked")
 	public <T> T update(T entity) {
 		return (T) getSession().merge(entity);
